@@ -20,6 +20,7 @@ public class GameScript : MonoBehaviour {
     List<string> gameWords = new List<string>();
     List<char> letterKey = new List<char>();
     List<char> randomizedLetterKey = new List<char>();
+    Dictionary<int, GameObject> squarePositions = new Dictionary<int, GameObject>();
     System.Random rnd = new System.Random();
 
 	// Use this for initialization
@@ -77,18 +78,20 @@ public class GameScript : MonoBehaviour {
         Vector3 tilePosition = calculateInitialVector();
         for(int i = 0; i < randomizedLetterKey.Count; i++)
         {
-            generateTile(tilePosition, randomizedLetterKey[i]);
+            GameObject newTile = generateTile(tilePosition, randomizedLetterKey[i]);
+            squarePositions.Add(tilePosition.GetHashCode(), newTile);
             tilePosition = incrementTilePosition(tilePosition);
         }
     }
 
-    void generateTile(Vector3 tilePosition, char tileText)
+    GameObject generateTile(Vector3 tilePosition, char tileText)
     {
         GameObject tile = (GameObject)Instantiate(tilePrefab, tilePosition, Quaternion.Euler(-90, 0, 0));
         float squareScale = squareSize / 10;
         tile.transform.localScale = new Vector3(squareScale, squareScale, squareScale);
         TileScript tileScript = tile.GetComponent<TileScript>();
         tileScript.tileTextContent = tileText.ToString();
+        return tile;
     }
     
     Vector3 calculateInitialVector()

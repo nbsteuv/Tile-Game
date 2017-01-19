@@ -8,6 +8,11 @@ public class GameScript : MonoBehaviour {
     public TextAsset threeWordList;
     public TextAsset fourWordList;
     public GameObject tilePrefab;
+    public int gridSquares;
+    public float gridBuffer;
+    public float screenPercentageToGrid;
+
+    float squareSize;
 
     List<string> gameWords = new List<string>();
     List<char> letterKey = new List<char>();
@@ -35,7 +40,7 @@ public class GameScript : MonoBehaviour {
 	void Update () {
 		
 	}
-
+    
     //Instantiate all blocks----------------------------------------------------------------------
     
     void instantiateTiles()
@@ -59,7 +64,21 @@ public class GameScript : MonoBehaviour {
 
     Vector3 calculateInitialVector()
     {
-        Vector3 startingPosition = new Vector3(0, 0, -1);
+        //Get size of squares that fits within set space
+        float screenHeight = Camera.main.orthographicSize * 2;
+
+        float gridSize = (screenPercentageToGrid / 100) * screenHeight;
+        int bufferCount = gridSquares + 1;
+        squareSize = (gridSize - (gridBuffer * bufferCount)) / gridSquares;
+
+        //Calculate Y value of first square, first find origin relative to screen bottom
+        float originY = 0.5f * screenHeight;
+        float squareY = gridSize - (originY + gridBuffer + (0.5f * squareSize));
+
+        //Calculate X value of first square
+        float squareX = -((0.5f * gridSize) - (gridBuffer + (0.5f * squareSize)));
+
+        Vector3 startingPosition = new Vector3(squareX, squareY, -1);
         return startingPosition;
     }
 

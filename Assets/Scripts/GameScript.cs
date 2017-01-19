@@ -8,20 +8,38 @@ public class GameScript : MonoBehaviour {
     public TextAsset fourWordList;
 
     List<string> gameWords = new List<string>();
+    List<char> letterKey = new List<char>();
 
 	// Use this for initialization
 	void Start () {
         setGameWords();
-        for(int i = 0; i < gameWords.Count; i++)
-        {
-            Debug.Log(gameWords[i]);
-        }
-	}
+        setLetterKey();
+
+       
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    //Create answer key for tile game---------------------------------------------------------------
+
+    void setLetterKey()
+    {
+        for(int i = 0; i < gameWords.Count; i++)
+        {
+            string gameWord = gameWords[i];
+            char[] wordCharacters = gameWord.ToCharArray();
+            for(int j = 0; j < wordCharacters.Length; j++)
+            {
+                char wordCharacter = wordCharacters[j];
+                letterKey.Add(wordCharacter);
+            }
+        }
+    }
+    
+    //Create word list from text assets--------------------------------------------------------------
 
     void setGameWords()
     {

@@ -12,6 +12,9 @@ public class GameScript : MonoBehaviour {
     public float gridBuffer;
     public float screenPercentageToGrid;
 
+    float screenHeight;
+    float gridSize;
+    int bufferCount;
     float squareSize;
 
     List<string> gameWords = new List<string>();
@@ -21,6 +24,7 @@ public class GameScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        setScreenValues();
         setGameWords();
         setLetterKey();
         setRandomizedLetterKey();
@@ -40,9 +44,34 @@ public class GameScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    //Get screen values for block instantiation-------------------------------------------------------
+
+    void setScreenValues()
+    {
+        setScreenHeight();
+        setGridSize();
+        setSquareSize();
+    }
     
+    void setScreenHeight()
+    {
+        screenHeight = Camera.main.orthographicSize * 2;
+    }
+
+    void setGridSize()
+    {
+        gridSize = (screenPercentageToGrid / 100) * screenHeight;
+    }
+
+    void setSquareSize()
+    {
+        int bufferCount = gridSquares + 1;
+        squareSize = (gridSize - (gridBuffer * bufferCount)) / gridSquares;
+    }
+
     //Instantiate all blocks----------------------------------------------------------------------
-    
+
     void instantiateTiles()
     {
         Vector3 tilePosition = calculateInitialVector();
@@ -61,16 +90,9 @@ public class GameScript : MonoBehaviour {
     }
 
     //TODO: Calculate based on screen size
-
+    
     Vector3 calculateInitialVector()
     {
-        //Get size of squares that fits within set space
-        float screenHeight = Camera.main.orthographicSize * 2;
-
-        float gridSize = (screenPercentageToGrid / 100) * screenHeight;
-        int bufferCount = gridSquares + 1;
-        squareSize = (gridSize - (gridBuffer * bufferCount)) / gridSquares;
-
         //Calculate Y value of first square, first find origin relative to screen bottom
         float originY = 0.5f * screenHeight;
         float squareY = gridSize - (originY + gridBuffer + (0.5f * squareSize));

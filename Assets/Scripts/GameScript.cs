@@ -90,7 +90,7 @@ public class GameScript : MonoBehaviour {
         float squareScale = squareSize / 10;
         tile.transform.localScale = new Vector3(squareScale, squareScale, squareScale);
         TileScript tileScript = tile.GetComponent<TileScript>();
-        tileScript.tileTextContent = tileText.ToString();
+        tileScript.tileTextContent = tileText.ToString().ToUpper();
         return tile;
     }
     

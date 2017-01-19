@@ -85,6 +85,8 @@ public class GameScript : MonoBehaviour {
     void generateTile(Vector3 tilePosition, char tileText)
     {
         GameObject tile = (GameObject)Instantiate(tilePrefab, tilePosition, Quaternion.Euler(-90, 0, 0));
+        float squareScale = squareSize / 10;
+        tile.transform.localScale = new Vector3(squareScale, squareScale, squareScale);
         TileScript tileScript = tile.GetComponent<TileScript>();
         tileScript.tileTextContent = tileText.ToString();
     }

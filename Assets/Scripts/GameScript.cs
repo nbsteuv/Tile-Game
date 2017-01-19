@@ -7,6 +7,7 @@ public class GameScript : MonoBehaviour {
 
     public TextAsset threeWordList;
     public TextAsset fourWordList;
+    public GameObject tilePrefab;
 
     List<string> gameWords = new List<string>();
     List<char> letterKey = new List<char>();
@@ -18,6 +19,7 @@ public class GameScript : MonoBehaviour {
         setGameWords();
         setLetterKey();
         setRandomizedLetterKey();
+        instantiateTiles();
 
         //Test code
         string test = "";
@@ -33,6 +35,40 @@ public class GameScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    //Instantiate all blocks----------------------------------------------------------------------
+    
+    void instantiateTiles()
+    {
+        Vector3 tilePosition = calculateInitialVector();
+        for(int i = 0; i < randomizedLetterKey.Count; i++)
+        {
+            generateTile(tilePosition, randomizedLetterKey[i]);
+            tilePosition = incrementTilePosition(tilePosition);
+        }
+    }
+
+    void generateTile(Vector3 tilePosition, char tileText)
+    {
+        GameObject tile = (GameObject)Instantiate(tilePrefab, tilePosition, Quaternion.Euler(-90, 0, 0));
+        TileScript tileScript = tile.GetComponent<TileScript>();
+        tileScript.tileTextContent = tileText.ToString();
+    }
+
+    //TODO: Calculate based on screen size
+
+    Vector3 calculateInitialVector()
+    {
+        Vector3 startingPosition = new Vector3(0, 0, -1);
+        return startingPosition;
+    }
+
+    Vector3 incrementTilePosition(Vector3 currentPosition)
+    {
+        Vector3 positionShift = new Vector3(1, 1, 0);
+        Vector3 newPosition = currentPosition + positionShift;
+        return newPosition;
+    }
 
     //Randomize answer key to create game tiles----------------------------------------------------
 

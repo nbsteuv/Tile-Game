@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 46ec2c7fc5ec57c468c9528d6d95cd97
-timeCreated: 1484654105
+timeCreated: 1484792520
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tileTextPrefab: {fileID: 1758966705222742, guid: b79b825916fad0440a025361b459e0b1,
+      type: 2}
+  - tileTextMesh: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

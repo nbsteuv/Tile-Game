@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: ddd12313a7cb6c443819efc0d41bd8dc
-timeCreated: 1484656036
+timeCreated: 1484794291
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - threeWordList: {fileID: 4900000, guid: 8e2dadcc460935746be2c6d309302966, type: 3}
+  - fourWordList: {fileID: 4900000, guid: bfb974c47a6d8334d83cd9c2348fc11f, type: 3}
+  - tilePrefab: {fileID: 1115315035615966, guid: 599fdfbaced4bad4a8fa816b5674ef9d,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

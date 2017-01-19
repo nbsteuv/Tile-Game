@@ -90,8 +90,6 @@ public class GameScript : MonoBehaviour {
         TileScript tileScript = tile.GetComponent<TileScript>();
         tileScript.tileTextContent = tileText.ToString();
     }
-
-    //TODO: Calculate based on screen size
     
     Vector3 calculateInitialVector()
     {
@@ -108,9 +106,21 @@ public class GameScript : MonoBehaviour {
 
     Vector3 incrementTilePosition(Vector3 currentPosition)
     {
-        Vector3 positionShift = new Vector3(1, 1, 0);
-        Vector3 newPosition = currentPosition + positionShift;
-        return newPosition;
+        float positionShift = gridBuffer + squareSize;
+        float newX;
+        float newY;
+
+        if(currentPosition.x + positionShift > 0.5f * gridSize)
+        {
+            newX = currentPosition.x - (positionShift * (gridSquares - 1));
+            newY = currentPosition.y - positionShift;
+        } else
+        {
+            newX = currentPosition.x + positionShift;
+            newY = currentPosition.y;
+        }
+
+        return new Vector3(newX, newY, -1);
     }
 
     //Randomize answer key to create game tiles----------------------------------------------------

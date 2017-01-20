@@ -22,6 +22,7 @@ public class GameScript : MonoBehaviour {
     List<char> letterKey = new List<char>();
     List<char> randomizedLetterKey = new List<char>();
     Dictionary<int, GameObject> squarePositions = new Dictionary<int, GameObject>();
+    Dictionary<int, int> indexAtPosition = new Dictionary<int, int>();
     System.Random rnd = new System.Random();
 
 	// Use this for initialization
@@ -48,9 +49,14 @@ public class GameScript : MonoBehaviour {
 		
 	}
 
+    //Move tile and reset empty position marker-------------------------------------------------------
+
     void swapPositionWithEmpty(TileScript tileScript)
     {
         Vector3 tilePosition = tileScript.transform.position;
+        int tileIndex = indexAtPosition[tilePosition.GetHashCode()];
+        int emptyIndex = indexAtPosition[emptyPosition.GetHashCode()];
+        listSwap(randomizedLetterKey, tileIndex, emptyIndex);
         tileScript.move(emptyPosition);
         squarePositions[emptyPosition.GetHashCode()] = tileScript.gameObject;
         emptyPosition = tilePosition;
@@ -73,6 +79,7 @@ public class GameScript : MonoBehaviour {
         randomizedLetterKey.Add(space);
         GameObject emptyGameObject = null;
         squarePositions.Add(placeHolderPosition.GetHashCode(), emptyGameObject);
+        indexAtPosition.Add(placeHolderPosition.GetHashCode(), indexAtPosition.Count);
         emptyPosition = placeHolderPosition;
     }
 
@@ -110,6 +117,8 @@ public class GameScript : MonoBehaviour {
         {
             GameObject newTile = generateTile(tilePosition, randomizedLetterKey[i]);
             subscribeToTileClickEvent(newTile);
+            indexAtPosition.Add(tilePosition.GetHashCode(), i);
+            //squarePositions dictionary might not be necessary after all, but could be used to highlight posible moves in tutorial
             squarePositions.Add(tilePosition.GetHashCode(), newTile);
             tilePosition = incrementTilePosition(tilePosition);
         }

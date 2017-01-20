@@ -15,6 +15,7 @@ public class TileScript : MonoBehaviour {
     void Start () {
         targetPosition = transform.position;
         GameObject tileText = (GameObject)Instantiate(tileTextPrefab, transform.position, Quaternion.identity);
+        tileText.transform.parent = transform;
         TextMesh tileTextMesh = tileText.GetComponent<TextMesh>();
         tileTextMesh.text = tileTextContent;
 	}

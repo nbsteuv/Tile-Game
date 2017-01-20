@@ -16,6 +16,7 @@ public class GameScript : MonoBehaviour {
     float gridSize;
     int bufferCount;
     float squareSize;
+    Vector3 emptyPosition;
 
     List<string> gameWords = new List<string>();
     List<char> letterKey = new List<char>();
@@ -38,6 +39,7 @@ public class GameScript : MonoBehaviour {
             test += letter + " - ";
         }
         Debug.Log(test);
+        Debug.Log(emptyPosition);
 
     }
 	
@@ -45,6 +47,16 @@ public class GameScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void addEndingPlaceHolder(Vector3 placeHolderPosition)
+    {
+        char space = ' ';
+        letterKey.Add(space);
+        randomizedLetterKey.Add(space);
+        GameObject emptyGameObject = null;
+        squarePositions.Add(placeHolderPosition.GetHashCode(), emptyGameObject);
+        emptyPosition = placeHolderPosition;
+    }
 
     //Get screen values for block instantiation-------------------------------------------------------
 
@@ -82,6 +94,7 @@ public class GameScript : MonoBehaviour {
             squarePositions.Add(tilePosition.GetHashCode(), newTile);
             tilePosition = incrementTilePosition(tilePosition);
         }
+        addEndingPlaceHolder(tilePosition);
     }
 
     GameObject generateTile(Vector3 tilePosition, char tileText)

@@ -48,11 +48,20 @@ public class GameScript : MonoBehaviour {
 		
 	}
 
+    void swapPositionWithEmpty(TileScript tileScript)
+    {
+        Vector3 tilePosition = tileScript.transform.position;
+        tileScript.move(emptyPosition);
+        squarePositions[emptyPosition.GetHashCode()] = tileScript.gameObject;
+        emptyPosition = tilePosition;
+    }
+
     //Fire event on tile click-----------------------------------------------------------------------
 
     void onTileClicked(object source, EventArgs args)
     {
-        Debug.Log("Tile clicked: " + source);
+        TileScript tileScript = (TileScript)source;
+        swapPositionWithEmpty(tileScript);
     }
 
     //Keep track of empty placeholder----------------------------------------------------------------

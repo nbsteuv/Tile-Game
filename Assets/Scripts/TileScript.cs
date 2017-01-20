@@ -7,9 +7,13 @@ public class TileScript : MonoBehaviour {
 
     public GameObject tileTextPrefab;
     public string tileTextContent;
+    public float moveSpeed;
+
+    Vector3 targetPosition;
 
     // Use this for initialization
     void Start () {
+        targetPosition = transform.position;
         GameObject tileText = (GameObject)Instantiate(tileTextPrefab, transform.position, Quaternion.identity);
         TextMesh tileTextMesh = tileText.GetComponent<TextMesh>();
         tileTextMesh.text = tileTextContent;
@@ -17,7 +21,11 @@ public class TileScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(targetPosition != transform.position)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+        }
 	}
 
     public delegate void TileClickedEventHandler(object source, EventArgs args);
@@ -35,5 +43,12 @@ public class TileScript : MonoBehaviour {
     {
         OnTileClicked();
     }
+
+    public void move(Vector3 target)
+    {
+        targetPosition = target;
+    }
+
+
 
 }

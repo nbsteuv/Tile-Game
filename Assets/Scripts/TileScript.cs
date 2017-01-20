@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,5 +19,21 @@ public class TileScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public delegate void TileClickedEventHandler(object source, EventArgs args);
+    public event TileClickedEventHandler TileClicked;
+    public virtual void OnTileClicked()
+    {
+        if(TileClicked != null)
+        {
+            TileClicked(this, EventArgs.Empty);
+        }
+        //Tileclicked?.Invoke(this, EventArgs.Empty);--Better?
+    }
+
+    private void OnMouseDown()
+    {
+        OnTileClicked();
+    }
 
 }

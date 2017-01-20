@@ -48,6 +48,15 @@ public class GameScript : MonoBehaviour {
 		
 	}
 
+    //Fire event on tile click-----------------------------------------------------------------------
+
+    void onTileClicked(object source, EventArgs args)
+    {
+        Debug.Log("Tile clicked: " + source);
+    }
+
+    //Keep track of empty placeholder----------------------------------------------------------------
+
     void addEndingPlaceHolder(Vector3 placeHolderPosition)
     {
         char space = ' ';
@@ -83,7 +92,7 @@ public class GameScript : MonoBehaviour {
         squareSize = (gridSize - (gridBuffer * bufferCount)) / gridSquares;
     }
 
-    //Instantiate all blocks----------------------------------------------------------------------
+    //Instantiate all blocks and subscribe to click events----------------------------------------------------------------------
 
     void instantiateTiles()
     {
@@ -91,10 +100,16 @@ public class GameScript : MonoBehaviour {
         for(int i = 0; i < randomizedLetterKey.Count; i++)
         {
             GameObject newTile = generateTile(tilePosition, randomizedLetterKey[i]);
+            subscribeToTileClickEvent(newTile);
             squarePositions.Add(tilePosition.GetHashCode(), newTile);
             tilePosition = incrementTilePosition(tilePosition);
         }
         addEndingPlaceHolder(tilePosition);
+    }
+
+    void subscribeToTileClickEvent(GameObject tile)
+    {
+        tile.GetComponent<TileScript>().TileClicked += onTileClicked;
     }
 
     GameObject generateTile(Vector3 tilePosition, char tileText)

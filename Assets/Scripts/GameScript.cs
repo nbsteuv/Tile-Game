@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameScript : MonoBehaviour {
@@ -34,20 +35,31 @@ public class GameScript : MonoBehaviour {
         instantiateTiles();
 
         //Test code
-        string test = "";
-        foreach(char letter in randomizedLetterKey)
+        foreach(string word in gameWords)
         {
-            test += letter + " - ";
+            Debug.Log(word);
         }
-        Debug.Log(test);
-        Debug.Log(emptyPosition);
-
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    //Create win condition and effect---------------------------------------------------------------
+
+    void compareBoardToKey()
+    {
+        if(letterKey.SequenceEqual(randomizedLetterKey))
+        {
+            winGame();
+        }
+    }
+
+    void winGame()
+    {
+        Debug.Log("You win!");
+    }
 
     //Move tile and reset empty position marker-------------------------------------------------------
 
@@ -60,6 +72,7 @@ public class GameScript : MonoBehaviour {
         tileScript.move(emptyPosition);
         squarePositions[emptyPosition.GetHashCode()] = tileScript.gameObject;
         emptyPosition = tilePosition;
+        compareBoardToKey();
     }
 
     //Fire event on tile click-----------------------------------------------------------------------

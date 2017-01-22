@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class GameScript : MonoBehaviour {
     public int gridSquares;
     public float gridBuffer;
     public float screenPercentageToGrid;
+    public float pauseSecondsAfterWin;
 
     float screenHeight;
     float gridSize;
@@ -53,7 +55,7 @@ public class GameScript : MonoBehaviour {
     {
         if(letterKey.SequenceEqual(randomizedLetterKey))
         {
-            winGame();
+            Invoke("winGame", pauseSecondsAfterWin);
         }
     }
 

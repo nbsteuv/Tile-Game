@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameScript : MonoBehaviour {
 
@@ -58,7 +59,7 @@ public class GameScript : MonoBehaviour {
 
     void winGame()
     {
-        Debug.Log("You win!");
+        SceneManager.LoadScene("Win Screen");
     }
 
     //Move tile and reset empty position marker-------------------------------------------------------

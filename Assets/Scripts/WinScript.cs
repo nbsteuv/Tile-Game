@@ -16,5 +16,10 @@ public class WinScript : MonoBehaviour {
         {
             SceneManager.LoadScene("Tile Game");
         }
-	}
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+    }
 }

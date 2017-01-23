@@ -58,6 +58,11 @@ public class GameScript : MonoBehaviour {
         {
             toggleLimitMovement();
         }
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
 	}
 
     //Limit swap to positions next to the empty square---------------------------------------------

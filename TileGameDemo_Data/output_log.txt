@@ -1,0 +1,76 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 950M (ID=0x139a)
+    Vendor:   NVIDIA
+    VRAM:     4064 MB
+    Driver:   21.21.13.6909
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.049 seconds
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.088887 ms
+pule
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+sire
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+aide
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+eon
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 13ac -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.401777 ms
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 254.
+Total: 0.149333 ms (FindLiveObjects: 0.020888 ms CreateObjectMapping: 0.015999 ms MarkObjects: 0.085777 ms  DeleteObjects: 0.026222 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.624888 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 261.
+Total: 0.227555 ms (FindLiveObjects: 0.037333 ms CreateObjectMapping: 0.021333 ms MarkObjects: 0.151999 ms  DeleteObjects: 0.015999 ms)
+
+save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+only
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+fate
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+rag
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+

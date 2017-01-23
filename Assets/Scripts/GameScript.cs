@@ -25,12 +25,15 @@ public class GameScript : MonoBehaviour {
     float displayHeight;
     float displayPanelWidth;
     Vector3 emptyPosition;
+    int squareMapX = 0;
+    int squareMapY = 0;
 
     List<string> gameWords = new List<string>();
     List<char> letterKey = new List<char>();
     List<char> randomizedLetterKey = new List<char>();
     Dictionary<int, GameObject> squarePositions = new Dictionary<int, GameObject>();
     Dictionary<int, int> indexAtPosition = new Dictionary<int, int>();
+    Dictionary<int, Vector2> squareMap = new Dictionary<int, Vector2>();
     System.Random rnd = new System.Random();
 
 	// Use this for initialization
@@ -62,20 +65,29 @@ public class GameScript : MonoBehaviour {
         {
             return true;
         }
-        float sourceX = Math.Abs(tileScript.transform.position.x);
-        float sourceY = Math.Abs(tileScript.transform.position.y);
-        float emptyX = Math.Abs(emptyPosition.x);
-        float emptyY = Math.Abs(emptyPosition.y);
-        //Need to round to avoid floating point errorss
-        decimal correctDifference = Math.Round((decimal)(squareSize + gridBuffer),2);
-        decimal differenceFound = Math.Round((decimal)(Math.Abs(sourceX - emptyX) + Math.Abs(sourceY - emptyY)),2);
+        Vector3 tilePosition = tileScript.transform.position;
+        Vector2 mappedTilePosition = squareMap[tilePosition.GetHashCode()];
+        Vector2 mappedEmptyPosition = squareMap[emptyPosition.GetHashCode()];
 
-        if(differenceFound == correctDifference)
+        float differenceFound = Math.Abs(mappedTilePosition.x - mappedEmptyPosition.x) + Math.Abs(mappedTilePosition.y - mappedEmptyPosition.y);
+
+        if(differenceFound == 1)
         {
             return true;
         } else
         {
             return false;
+        }
+    }
+
+    void addPositionToSquareMap(Vector3 position)
+    {
+        squareMap.Add(position.GetHashCode(), new Vector2(squareMapX, squareMapY));
+        squareMapX++;
+        if(squareMapX > gridSquares - 1)
+        {
+            squareMapX = 0;
+            squareMapY++;
         }
     }
 
@@ -176,6 +188,7 @@ public class GameScript : MonoBehaviour {
         GameObject emptyGameObject = null;
         squarePositions.Add(placeHolderPosition.GetHashCode(), emptyGameObject);
         indexAtPosition.Add(placeHolderPosition.GetHashCode(), indexAtPosition.Count);
+        addPositionToSquareMap(placeHolderPosition);
         emptyPosition = placeHolderPosition;
     }
 
@@ -216,6 +229,7 @@ public class GameScript : MonoBehaviour {
             indexAtPosition.Add(tilePosition.GetHashCode(), i);
             //squarePositions dictionary might not be necessary after all, but could be used to highlight posible moves in tutorial
             squarePositions.Add(tilePosition.GetHashCode(), newTile);
+            addPositionToSquareMap(tilePosition);
             tilePosition = incrementTilePosition(tilePosition);
         }
         addEndingPlaceHolder(tilePosition);

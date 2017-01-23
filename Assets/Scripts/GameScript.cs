@@ -11,6 +11,7 @@ public class GameScript : MonoBehaviour {
     public TextAsset threeWordList;
     public TextAsset fourWordList;
     public GameObject tilePrefab;
+    public GameObject wordDisplayTextPrefab;
     public int gridSquares;
     public float gridBuffer;
     public float screenPercentageToGrid;
@@ -20,6 +21,8 @@ public class GameScript : MonoBehaviour {
     float gridSize;
     int bufferCount;
     float squareSize;
+    float displayHeight;
+    float displayPanelWidth;
     Vector3 emptyPosition;
 
     List<string> gameWords = new List<string>();
@@ -36,9 +39,10 @@ public class GameScript : MonoBehaviour {
         setLetterKey();
         setRandomizedLetterKey();
         instantiateTiles();
+        generateDisplayPanels();
 
         //Test code
-        foreach(string word in gameWords)
+        foreach (string word in gameWords)
         {
             Debug.Log(word);
         }
@@ -49,6 +53,56 @@ public class GameScript : MonoBehaviour {
 		
 	}
 
+    
+    //Create display for words, time, and move count-----------------------------------------------
+
+    void generateDisplayPanels()
+    {
+        instantiateGameWordDisplay();
+    }
+    
+    void setDisplayHeight()
+    {
+        displayHeight = ((100 - screenPercentageToGrid) / 100) * screenHeight;
+    }
+
+    void setDisplayPanelWidth()
+    {
+        displayPanelWidth = (Camera.main.aspect * screenHeight) / 3;
+    }
+
+    void instantiateGameWordDisplay()
+    {
+        Vector3 wordPosition = calculateInitialWordPosition();
+        foreach(string word in gameWords)
+        {
+            GameObject gameWord = (GameObject)Instantiate(wordDisplayTextPrefab, wordPosition, Quaternion.identity);
+            gameWord.GetComponent<TextMesh>().text = word.ToUpper();
+            wordPosition = incrementWordPosition(wordPosition);
+        }
+        
+
+    }
+
+    Vector3 calculateInitialWordPosition()
+    {
+        float initialWordPositionX = -((Camera.main.aspect * screenHeight) / 2);
+        float initialWordPositionY = screenHeight / 2;
+        float initialWordPositionZ = -1;
+        Vector3 wordPosition = new Vector3(initialWordPositionX, initialWordPositionY, initialWordPositionZ);
+        return wordPosition;
+    }
+
+    Vector3 incrementWordPosition(Vector3 currentPosition)
+    {
+        float currentX = currentPosition.x;
+        float currentY = currentPosition.y;
+        float currentZ = currentPosition.z;
+        float newY = currentPosition.y - 2;
+        Vector3 newPosition = new Vector3(currentX, newY, currentZ);
+        return newPosition;
+    }
+    
     //Create win condition and effect---------------------------------------------------------------
 
     void compareBoardToKey()

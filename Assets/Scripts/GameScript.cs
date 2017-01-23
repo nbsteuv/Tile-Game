@@ -54,7 +54,10 @@ public class GameScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetButtonDown("Jump"))
+        {
+            toggleLimitMovement();
+        }
 	}
 
     //Limit swap to positions next to the empty square---------------------------------------------
@@ -89,6 +92,11 @@ public class GameScript : MonoBehaviour {
             squareMapX = 0;
             squareMapY++;
         }
+    }
+
+    void toggleLimitMovement()
+    {
+        limitMovement = !limitMovement;
     }
 
     //Create display for words, time, and move count-----------------------------------------------

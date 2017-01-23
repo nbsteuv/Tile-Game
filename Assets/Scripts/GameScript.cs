@@ -16,6 +16,7 @@ public class GameScript : MonoBehaviour {
     public float gridBuffer;
     public float screenPercentageToGrid;
     public float pauseSecondsAfterWin;
+    public bool limitMovement;
 
     float screenHeight;
     float gridSize;
@@ -53,7 +54,31 @@ public class GameScript : MonoBehaviour {
 		
 	}
 
-    
+    //Limit swap to positions next to the empty square---------------------------------------------
+
+    bool checkEmptyAdjacent(TileScript tileScript)
+    {
+        if (!limitMovement)
+        {
+            return true;
+        }
+        float sourceX = Math.Abs(tileScript.transform.position.x);
+        float sourceY = Math.Abs(tileScript.transform.position.y);
+        float emptyX = Math.Abs(emptyPosition.x);
+        float emptyY = Math.Abs(emptyPosition.y);
+        //Need to round to avoid floating point errorss
+        decimal correctDifference = Math.Round((decimal)(squareSize + gridBuffer),2);
+        decimal differenceFound = Math.Round((decimal)(Math.Abs(sourceX - emptyX) + Math.Abs(sourceY - emptyY)),2);
+
+        if(differenceFound == correctDifference)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
     //Create display for words, time, and move count-----------------------------------------------
 
     void generateDisplayPanels()
@@ -80,8 +105,6 @@ public class GameScript : MonoBehaviour {
             gameWord.GetComponent<TextMesh>().text = word.ToUpper();
             wordPosition = incrementWordPosition(wordPosition);
         }
-        
-
     }
 
     Vector3 calculateInitialWordPosition()
@@ -98,7 +121,7 @@ public class GameScript : MonoBehaviour {
         float currentX = currentPosition.x;
         float currentY = currentPosition.y;
         float currentZ = currentPosition.z;
-        float newY = currentPosition.y - 2;
+        float newY = currentY - 2;
         Vector3 newPosition = new Vector3(currentX, newY, currentZ);
         return newPosition;
     }
@@ -137,7 +160,10 @@ public class GameScript : MonoBehaviour {
     void onTileClicked(object source, EventArgs args)
     {
         TileScript tileScript = (TileScript)source;
-        swapPositionWithEmpty(tileScript);
+        if (checkEmptyAdjacent(tileScript))
+        {
+            swapPositionWithEmpty(tileScript);
+        }
     }
 
     //Keep track of empty placeholder----------------------------------------------------------------

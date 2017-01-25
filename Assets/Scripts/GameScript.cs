@@ -13,6 +13,7 @@ public class GameScript : MonoBehaviour {
     public GameObject tilePrefab;
     public GameObject wordDisplayTextPrefab;
     public GameObject timerDisplayPrefab;
+    public GameObject moveCounterPrefab;
     public int gridSquares;
     public float gridBuffer;
     public float screenPercentageToGrid;
@@ -67,7 +68,25 @@ public class GameScript : MonoBehaviour {
         }
 	}
 
-    //Displayer timer------------------------------------------------------------------------------
+    //Display move counter----------------------------------------------------------------------
+
+    void instantiateMoveCounter()
+    {
+        Vector3 moveCounterPosition = calculateMoveCounterPosition();
+        GameObject moveCounter = (GameObject)Instantiate(moveCounterPrefab, moveCounterPosition, Quaternion.identity);
+        moveCounter.gameObject.name = "MoveCounter";
+    }
+    
+    Vector3 calculateMoveCounterPosition()
+    {
+        float positionX = displayPanelWidth;
+        float positionY = displayDistanceAboveOrigin + (displayHeight / 2);
+        float positionZ = -1;
+        Vector3 position = new Vector3(positionX, positionY, positionZ);
+        return position;
+    }
+
+    //Display timer------------------------------------------------------------------------------
 
     void instantiateTimer()
     {
@@ -131,6 +150,7 @@ public class GameScript : MonoBehaviour {
     {
         instantiateGameWordDisplay();
         instantiateTimer();
+        instantiateMoveCounter();
     }
 
     void instantiateGameWordDisplay()

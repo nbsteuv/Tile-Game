@@ -19,7 +19,7 @@ Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\U
 Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.049 seconds
+- Completed reload, in  0.033 seconds
 Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Nick\Documents\Tile Game\TileGameDemo_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
@@ -27,50 +27,50 @@ desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 2.088887 ms
-pule
+UnloadTime: 2.136886 ms
+bane
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-sire
+colt
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-aide
+cure
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-eon
+sun
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 13ac -> priority: 1 
+  Thread -> id: 3814 -> priority: 1 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.401777 ms
+UnloadTime: 0.813777 ms
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 254.
-Total: 0.149333 ms (FindLiveObjects: 0.020888 ms CreateObjectMapping: 0.015999 ms MarkObjects: 0.085777 ms  DeleteObjects: 0.026222 ms)
+Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 260.
+Total: 0.319999 ms (FindLiveObjects: 0.035555 ms CreateObjectMapping: 0.050222 ms MarkObjects: 0.161777 ms  DeleteObjects: 0.071111 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.624888 ms
+UnloadTime: 0.351999 ms
 
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 261.
-Total: 0.227555 ms (FindLiveObjects: 0.037333 ms CreateObjectMapping: 0.021333 ms MarkObjects: 0.151999 ms  DeleteObjects: 0.015999 ms)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 280.
+Total: 0.156444 ms (FindLiveObjects: 0.025777 ms CreateObjectMapping: 0.015555 ms MarkObjects: 0.103111 ms  DeleteObjects: 0.010666 ms)
 
-save
+wake
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-only
+cant
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-fate
+bile
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-rag
+air
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 

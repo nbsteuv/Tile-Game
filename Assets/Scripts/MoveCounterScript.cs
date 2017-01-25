@@ -11,9 +11,6 @@ public class MoveCounterScript : MonoBehaviour {
 	void Start () {
         textMesh = gameObject.GetComponent<TextMesh>();
         textMesh.text = "Moves\n" + moves.ToString();
-        incrementMoves();
-        incrementMoves();
-
     }
 	
 	// Update is called once per frame

@@ -12,6 +12,7 @@ public class GameScript : MonoBehaviour {
     public TextAsset fourWordList;
     public GameObject tilePrefab;
     public GameObject wordDisplayTextPrefab;
+    public GameObject timerDisplayPrefab;
     public int gridSquares;
     public float gridBuffer;
     public float screenPercentageToGrid;
@@ -24,6 +25,7 @@ public class GameScript : MonoBehaviour {
     float squareSize;
     float displayHeight;
     float displayPanelWidth;
+    float displayDistanceAboveOrigin;
     Vector3 emptyPosition;
     int squareMapX = 0;
     int squareMapY = 0;
@@ -64,6 +66,26 @@ public class GameScript : MonoBehaviour {
             Application.Quit();
         }
 	}
+
+    //Displayer timer------------------------------------------------------------------------------
+
+    void instantiateTimer()
+    {
+        Vector3 timerPosition = calculateTimerPosition();
+        GameObject timer = (GameObject)Instantiate(timerDisplayPrefab, timerPosition, Quaternion.identity);
+        timer.gameObject.name = "Timer";
+        timer.GetComponent<TimerScript>().startTimer();
+    }
+
+    Vector3 calculateTimerPosition()
+    {
+        float positionX = 0;
+        Debug.Log(displayHeight);
+        float positionY = displayDistanceAboveOrigin + (displayHeight / 2);
+        float positionZ = -1;
+        Vector3 position = new Vector3(positionX, positionY, positionZ);
+        return position;
+    }
 
     //Limit swap to positions next to the empty square---------------------------------------------
 
@@ -109,16 +131,7 @@ public class GameScript : MonoBehaviour {
     void generateDisplayPanels()
     {
         instantiateGameWordDisplay();
-    }
-    
-    void setDisplayHeight()
-    {
-        displayHeight = ((100 - screenPercentageToGrid) / 100) * screenHeight;
-    }
-
-    void setDisplayPanelWidth()
-    {
-        displayPanelWidth = (Camera.main.aspect * screenHeight) / 3;
+        instantiateTimer();
     }
 
     void instantiateGameWordDisplay()
@@ -212,8 +225,12 @@ public class GameScript : MonoBehaviour {
         setScreenHeight();
         setGridSize();
         setSquareSize();
+        setDisplayHeight();
+        setDisplayDistanceAboveOrigin();
+        setDisplayPanelWidth();
+
     }
-    
+
     void setScreenHeight()
     {
         screenHeight = Camera.main.orthographicSize * 2;
@@ -228,6 +245,21 @@ public class GameScript : MonoBehaviour {
     {
         int bufferCount = gridSquares + 1;
         squareSize = (gridSize - (gridBuffer * bufferCount)) / gridSquares;
+    }
+
+    void setDisplayHeight()
+    {
+        displayHeight = ((100 - screenPercentageToGrid) / 100) * screenHeight;
+    }
+
+    void setDisplayPanelWidth()
+    {
+        displayPanelWidth = (Camera.main.aspect * screenHeight) / 3;
+    }
+
+    void setDisplayDistanceAboveOrigin()
+    {
+        displayDistanceAboveOrigin = gridSize - (screenHeight / 2);
     }
 
     //Instantiate all blocks and subscribe to click events----------------------------------------------------------------------

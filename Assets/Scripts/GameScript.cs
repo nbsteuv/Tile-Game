@@ -80,7 +80,6 @@ public class GameScript : MonoBehaviour {
     Vector3 calculateTimerPosition()
     {
         float positionX = 0;
-        Debug.Log(displayHeight);
         float positionY = displayDistanceAboveOrigin + (displayHeight / 2);
         float positionZ = -1;
         Vector3 position = new Vector3(positionX, positionY, positionZ);

@@ -23,6 +23,11 @@ public class GameScript : MonoBehaviour {
     public int wordListDisplayBox;
     public int moveCounterDisplayBox;
 
+    GameObject moveCounter;
+    GameObject timer;
+    MoveCounterScript moveCounterScript;
+    TimerScript timerScript;
+
     float screenHeight;
     float gridSize;
     int bufferCount;
@@ -126,16 +131,18 @@ public class GameScript : MonoBehaviour {
     void instantiateMoveCounter()
     {
         Vector3 moveCounterPosition = calculateDisplayPosition(moveCounterDisplayBox);
-        GameObject moveCounter = (GameObject)Instantiate(moveCounterPrefab, moveCounterPosition, Quaternion.identity);
+        moveCounter = (GameObject)Instantiate(moveCounterPrefab, moveCounterPosition, Quaternion.identity);
         moveCounter.gameObject.name = "MoveCounter";
+        moveCounterScript = moveCounter.GetComponent<MoveCounterScript>();
     }
 
     void instantiateTimer()
     {
         Vector3 timerPosition = calculateDisplayPosition(timerDisplayBox);
-        GameObject timer = (GameObject)Instantiate(timerDisplayPrefab, timerPosition, Quaternion.identity);
+        timer = (GameObject)Instantiate(timerDisplayPrefab, timerPosition, Quaternion.identity);
         timer.gameObject.name = "Timer";
-        timer.GetComponent<TimerScript>().startTimer();
+        timerScript = timer.GetComponent<TimerScript>();
+        timerScript.startTimer();
     }
 
     void instantiateGameWordDisplay()

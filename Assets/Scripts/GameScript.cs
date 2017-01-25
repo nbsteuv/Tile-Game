@@ -193,6 +193,7 @@ public class GameScript : MonoBehaviour {
         tileScript.move(emptyPosition);
         squarePositions[emptyPosition.GetHashCode()] = tileScript.gameObject;
         emptyPosition = tilePosition;
+        moveCounterScript.incrementMoves();
         compareBoardToKey();
     }
 

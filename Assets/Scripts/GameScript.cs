@@ -62,7 +62,6 @@ public class GameScript : MonoBehaviour {
         instantiateTiles();
         generateDisplayPanels();
         resetScores();
-        scoreKeeper.GetComponent<ScoreKeeperScript>().getScores();
 
         //Test code
         foreach (string word in gameWords)
@@ -196,7 +195,13 @@ public class GameScript : MonoBehaviour {
 
     void winGame()
     {
+        keepScores();
         SceneManager.LoadScene("Win Screen");
+    }
+
+    void keepScores()
+    {
+        scoreKeeper.GetComponent<ScoreKeeperScript>().getScores();
     }
 
     //Move tile and reset empty position marker-------------------------------------------------------

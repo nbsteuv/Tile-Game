@@ -21,7 +21,5 @@ public class ScoreKeeperScript : MonoBehaviour {
     {
         time = GameObject.Find("Timer").GetComponent<TimerScript>().time.ToString();
         moves = GameObject.Find("MoveCounter").GetComponent<MoveCounterScript>().moves.ToString();
-        Debug.Log(time);
-        Debug.Log(moves);
     }
 }

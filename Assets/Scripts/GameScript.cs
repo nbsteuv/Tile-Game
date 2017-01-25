@@ -167,8 +167,8 @@ public class GameScript : MonoBehaviour {
 
     Vector3 calculateInitialWordPosition()
     {
-        float initialWordPositionX = -((Camera.main.aspect * screenHeight) / 2);
-        float initialWordPositionY = screenHeight / 2;
+        float initialWordPositionX = -displayPanelWidth;
+        float initialWordPositionY = displayDistanceAboveOrigin + (displayHeight / 2) - gridBuffer;
         float initialWordPositionZ = -1;
         Vector3 wordPosition = new Vector3(initialWordPositionX, initialWordPositionY, initialWordPositionZ);
         return wordPosition;

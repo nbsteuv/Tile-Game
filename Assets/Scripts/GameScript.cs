@@ -19,6 +19,9 @@ public class GameScript : MonoBehaviour {
     public float screenPercentageToGrid;
     public float pauseSecondsAfterWin;
     public bool limitMovement;
+    public int timerDisplayBox;
+    public int wordListDisplayBox;
+    public int moveCounterDisplayBox;
 
     float screenHeight;
     float gridSize;
@@ -30,6 +33,9 @@ public class GameScript : MonoBehaviour {
     Vector3 emptyPosition;
     int squareMapX = 0;
     int squareMapY = 0;
+    float horizontalDisplayPosition1 = -1f;
+    float horizontalDisplayPosition2 = 0;
+    float horizontalDisplayPosition3 = 1f;
 
     List<string> gameWords = new List<string>();
     List<char> letterKey = new List<char>();
@@ -37,6 +43,7 @@ public class GameScript : MonoBehaviour {
     Dictionary<int, GameObject> squarePositions = new Dictionary<int, GameObject>();
     Dictionary<int, int> indexAtPosition = new Dictionary<int, int>();
     Dictionary<int, Vector2> squareMap = new Dictionary<int, Vector2>();
+    Dictionary<int, float> horizontalDisplayPositions = new Dictionary<int, float>();
     System.Random rnd = new System.Random();
 
 	// Use this for initialization
@@ -67,43 +74,6 @@ public class GameScript : MonoBehaviour {
             Application.Quit();
         }
 	}
-
-    //Display move counter----------------------------------------------------------------------
-
-    void instantiateMoveCounter()
-    {
-        Vector3 moveCounterPosition = calculateMoveCounterPosition();
-        GameObject moveCounter = (GameObject)Instantiate(moveCounterPrefab, moveCounterPosition, Quaternion.identity);
-        moveCounter.gameObject.name = "MoveCounter";
-    }
-    
-    Vector3 calculateMoveCounterPosition()
-    {
-        float positionX = displayPanelWidth;
-        float positionY = displayDistanceAboveOrigin + (displayHeight / 2);
-        float positionZ = -1;
-        Vector3 position = new Vector3(positionX, positionY, positionZ);
-        return position;
-    }
-
-    //Display timer------------------------------------------------------------------------------
-
-    void instantiateTimer()
-    {
-        Vector3 timerPosition = calculateTimerPosition();
-        GameObject timer = (GameObject)Instantiate(timerDisplayPrefab, timerPosition, Quaternion.identity);
-        timer.gameObject.name = "Timer";
-        timer.GetComponent<TimerScript>().startTimer();
-    }
-
-    Vector3 calculateTimerPosition()
-    {
-        float positionX = 0;
-        float positionY = displayDistanceAboveOrigin + (displayHeight / 2);
-        float positionZ = -1;
-        Vector3 position = new Vector3(positionX, positionY, positionZ);
-        return position;
-    }
 
     //Limit swap to positions next to the empty square---------------------------------------------
 
@@ -153,9 +123,24 @@ public class GameScript : MonoBehaviour {
         instantiateMoveCounter();
     }
 
+    void instantiateMoveCounter()
+    {
+        Vector3 moveCounterPosition = calculateDisplayPosition(moveCounterDisplayBox);
+        GameObject moveCounter = (GameObject)Instantiate(moveCounterPrefab, moveCounterPosition, Quaternion.identity);
+        moveCounter.gameObject.name = "MoveCounter";
+    }
+
+    void instantiateTimer()
+    {
+        Vector3 timerPosition = calculateDisplayPosition(timerDisplayBox);
+        GameObject timer = (GameObject)Instantiate(timerDisplayPrefab, timerPosition, Quaternion.identity);
+        timer.gameObject.name = "Timer";
+        timer.GetComponent<TimerScript>().startTimer();
+    }
+
     void instantiateGameWordDisplay()
     {
-        Vector3 wordPosition = calculateInitialWordPosition();
+        Vector3 wordPosition = calculateDisplayPosition(wordListDisplayBox);
         string displayWords = "";
         foreach(string word in gameWords)
         {
@@ -165,9 +150,10 @@ public class GameScript : MonoBehaviour {
         wordDisplay.GetComponent<TextMesh>().text = displayWords;
     }
 
-    Vector3 calculateInitialWordPosition()
+    Vector3 calculateDisplayPosition(int box)
     {
-        float initialWordPositionX = -displayPanelWidth;
+        float horizontalDisplayPosition = horizontalDisplayPositions[box];
+        float initialWordPositionX = horizontalDisplayPosition * displayPanelWidth;
         float initialWordPositionY = displayDistanceAboveOrigin + (displayHeight / 2) - gridBuffer;
         float initialWordPositionZ = -1;
         Vector3 wordPosition = new Vector3(initialWordPositionX, initialWordPositionY, initialWordPositionZ);
@@ -238,7 +224,7 @@ public class GameScript : MonoBehaviour {
         setDisplayHeight();
         setDisplayDistanceAboveOrigin();
         setDisplayPanelWidth();
-
+        initializeHorizontalDisplayPositionDict();
     }
 
     void setScreenHeight()
@@ -270,6 +256,13 @@ public class GameScript : MonoBehaviour {
     void setDisplayDistanceAboveOrigin()
     {
         displayDistanceAboveOrigin = gridSize - (screenHeight / 2);
+    }
+
+    void initializeHorizontalDisplayPositionDict()
+    {
+        horizontalDisplayPositions.Add(1, horizontalDisplayPosition1);
+        horizontalDisplayPositions.Add(2, horizontalDisplayPosition2);
+        horizontalDisplayPositions.Add(3, horizontalDisplayPosition3);
     }
 
     //Instantiate all blocks and subscribe to click events----------------------------------------------------------------------

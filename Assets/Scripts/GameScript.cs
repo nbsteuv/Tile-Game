@@ -14,6 +14,7 @@ public class GameScript : MonoBehaviour {
     public GameObject wordDisplayTextPrefab;
     public GameObject timerDisplayPrefab;
     public GameObject moveCounterPrefab;
+    public GameObject scoreKeeperPrefab;
     public int gridSquares;
     public float gridBuffer;
     public float screenPercentageToGrid;
@@ -27,6 +28,7 @@ public class GameScript : MonoBehaviour {
     GameObject timer;
     MoveCounterScript moveCounterScript;
     TimerScript timerScript;
+    GameObject scoreKeeper;
 
     float screenHeight;
     float gridSize;
@@ -59,6 +61,7 @@ public class GameScript : MonoBehaviour {
         setRandomizedLetterKey();
         instantiateTiles();
         generateDisplayPanels();
+        resetScores();
 
         //Test code
         foreach (string word in gameWords)
@@ -79,6 +82,19 @@ public class GameScript : MonoBehaviour {
             Application.Quit();
         }
 	}
+
+    //Instantiate ScoreKeeper and reset scores----------------------------------------------------
+
+    void resetScores()
+    {
+        GameObject oldScoreKeeper = GameObject.Find("ScoreKeeper");
+        if (oldScoreKeeper)
+        {
+            Destroy(oldScoreKeeper);
+        }
+        scoreKeeper = (GameObject)Instantiate(scoreKeeperPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        scoreKeeper.gameObject.name = "ScoreKeeper";
+    }
 
     //Limit swap to positions next to the empty square---------------------------------------------
 

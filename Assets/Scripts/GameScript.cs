@@ -92,7 +92,7 @@ public class GameScript : MonoBehaviour {
         {
             Destroy(oldScoreKeeper);
         }
-        scoreKeeper = (GameObject)Instantiate(scoreKeeperPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        scoreKeeper = (GameObject)Instantiate(scoreKeeperPrefab, new Vector3(0, 0, 10), Quaternion.identity);
         scoreKeeper.gameObject.name = "ScoreKeeper";
     }
 

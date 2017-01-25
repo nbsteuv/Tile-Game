@@ -62,6 +62,7 @@ public class GameScript : MonoBehaviour {
         instantiateTiles();
         generateDisplayPanels();
         resetScores();
+        scoreKeeper.GetComponent<ScoreKeeperScript>().getScores();
 
         //Test code
         foreach (string word in gameWords)

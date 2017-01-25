@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class TimerScript : MonoBehaviour {
 
-    decimal timer = 0.00M;
+    public decimal time = 0.00M;
     bool timerActive = false;
     TextMesh textMesh;
 
 	// Use this for initialization
 	void Start () {
         textMesh = gameObject.GetComponent<TextMesh>();
-        textMesh.text = "Time\n" + timer.ToString();
+        textMesh.text = "Time\n" + time.ToString();
         startTimer();
 	}
 	
@@ -20,8 +20,8 @@ public class TimerScript : MonoBehaviour {
 	void Update () {
         if (timerActive)
         {
-            timer += Math.Round((decimal)Time.deltaTime,2);
-            textMesh.text = "Time\n" + timer.ToString();
+            time += Math.Round((decimal)Time.deltaTime,2);
+            textMesh.text = "Time\n" + time.ToString();
         }
 	}
 

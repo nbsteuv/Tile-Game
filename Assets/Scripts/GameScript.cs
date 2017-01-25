@@ -156,12 +156,13 @@ public class GameScript : MonoBehaviour {
     void instantiateGameWordDisplay()
     {
         Vector3 wordPosition = calculateInitialWordPosition();
+        string displayWords = "";
         foreach(string word in gameWords)
         {
-            GameObject gameWord = (GameObject)Instantiate(wordDisplayTextPrefab, wordPosition, Quaternion.identity);
-            gameWord.GetComponent<TextMesh>().text = word.ToUpper();
-            wordPosition = incrementWordPosition(wordPosition);
+            displayWords += word.ToUpper() + "\n";
         }
+        GameObject wordDisplay = (GameObject)Instantiate(wordDisplayTextPrefab, wordPosition, Quaternion.identity);
+        wordDisplay.GetComponent<TextMesh>().text = displayWords;
     }
 
     Vector3 calculateInitialWordPosition()
@@ -171,16 +172,6 @@ public class GameScript : MonoBehaviour {
         float initialWordPositionZ = -1;
         Vector3 wordPosition = new Vector3(initialWordPositionX, initialWordPositionY, initialWordPositionZ);
         return wordPosition;
-    }
-
-    Vector3 incrementWordPosition(Vector3 currentPosition)
-    {
-        float currentX = currentPosition.x;
-        float currentY = currentPosition.y;
-        float currentZ = currentPosition.z;
-        float newY = currentY - 2;
-        Vector3 newPosition = new Vector3(currentX, newY, currentZ);
-        return newPosition;
     }
     
     //Create win condition and effect---------------------------------------------------------------

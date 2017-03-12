@@ -12,9 +12,14 @@ public class InstructionsScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown("4"))
         {
-            SceneManager.LoadScene("Tile Game");
+            SceneManager.LoadScene("Tile Game 4 Letter");
+        }
+
+        if (Input.GetKeyDown("5"))
+        {
+            SceneManager.LoadScene("Tile Game 5 Letter");
         }
 
         if (Input.GetKeyDown("escape"))

@@ -17,14 +17,19 @@ public class WinScript : MonoBehaviour {
         ScoreKeeperScript scoreKeeperScript = scoreKeeper.GetComponent<ScoreKeeperScript>();
         time = scoreKeeperScript.time;
         moves = scoreKeeperScript.moves;
-        playAgainText.GetComponent<TextMesh>().text = "It only took you " + time + " seconds\nand " + moves + " moves.\nPress space to play again.";
+        playAgainText.GetComponent<TextMesh>().text = "It only took you " + time + " seconds\nand " + moves + " moves.\nPress 4 or 5 to play again.";
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown("4"))
         {
-            SceneManager.LoadScene("Tile Game");
+            SceneManager.LoadScene("Tile Game 4 Letter");
+        }
+
+        if (Input.GetKeyDown("5"))
+        {
+            SceneManager.LoadScene("Tile Game 5 Letter");
         }
 
         if (Input.GetKeyDown("escape"))

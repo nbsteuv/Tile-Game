@@ -24,7 +24,6 @@ public class GameScript : MonoBehaviour
     public GameObject timerDisplayPrefab;
     public GameObject moveCounterPrefab;
     public GameObject scoreKeeperPrefab;
-    public int gridSquares;
     public float gridBuffer;
     public float screenPercentageToGrid;
     public float pauseSecondsAfterWin;
@@ -132,7 +131,7 @@ public class GameScript : MonoBehaviour
     {
         squareMap.Add(position.GetHashCode(), new Vector2(squareMapX, squareMapY));
         squareMapX++;
-        if(squareMapX > gridSquares - 1)
+        if(squareMapX > (int)gameSize - 1)
         {
             squareMapX = 0;
             squareMapY++;
@@ -179,6 +178,10 @@ public class GameScript : MonoBehaviour
             displayWords += word.ToUpper() + "\n";
         }
         GameObject wordDisplay = (GameObject)Instantiate(wordDisplayTextPrefab, wordPosition, Quaternion.identity);
+        if ((int) gameSize == 5)
+        {
+            wordDisplay.transform.localScale = wordDisplay.transform.localScale * (0.8f);
+        }
         wordDisplay.GetComponent<TextMesh>().text = displayWords;
     }
 

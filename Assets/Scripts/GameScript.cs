@@ -6,10 +6,19 @@ using System.Timers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameScript : MonoBehaviour {
+public class GameScript : MonoBehaviour
+{
 
+    public enum gameSizes
+    {
+        Four=4,
+        Five
+    };
+
+    public gameSizes gameSize;
     public TextAsset threeWordList;
     public TextAsset fourWordList;
+    public TextAsset fiveWordList;
     public GameObject tilePrefab;
     public GameObject wordDisplayTextPrefab;
     public GameObject timerDisplayPrefab;
@@ -269,8 +278,8 @@ public class GameScript : MonoBehaviour {
 
     void setSquareSize()
     {
-        int bufferCount = gridSquares + 1;
-        squareSize = (gridSize - (gridBuffer * bufferCount)) / gridSquares;
+        int bufferCount = (int)gameSize + 1;
+        squareSize = (gridSize - (gridBuffer * bufferCount)) / (int)gameSize;
     }
 
     void setDisplayHeight()
@@ -349,7 +358,7 @@ public class GameScript : MonoBehaviour {
 
         if(currentPosition.x + positionShift > 0.5f * gridSize)
         {
-            newX = currentPosition.x - (positionShift * (gridSquares - 1));
+            newX = currentPosition.x - (positionShift * ((int)gameSize - 1));
             newY = currentPosition.y - positionShift;
         } else
         {
@@ -414,12 +423,41 @@ public class GameScript : MonoBehaviour {
 
     void setGameWords()
     {
-        //TODO: Replace i and wordList values based on selected number of squares 
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < getGameNumber() - 1; i++)
         {
-            setUniqueWord(fourWordList);
+            setUniqueWord(getPrimaryWordList());
         }
-        setUniqueWord(threeWordList);
+        setUniqueWord(getSecondaryWordList());
+    }
+
+    int getGameNumber()
+    {
+        int gameSquares = (int)gameSize;
+        return gameSquares;
+    }
+
+    TextAsset getPrimaryWordList()
+    {
+        if (gameSize == gameSizes.Four)
+        {
+            return fourWordList;
+        }
+        else
+        {
+            return fiveWordList;
+        }
+    }
+
+    TextAsset getSecondaryWordList()
+    {
+        if (gameSize == gameSizes.Four)
+        {
+            return threeWordList;
+        }
+        else
+        {
+            return fourWordList;
+        }
     }
 
     void setUniqueWord(TextAsset wordList)

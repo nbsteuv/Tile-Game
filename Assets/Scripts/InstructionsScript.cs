@@ -27,4 +27,14 @@ public class InstructionsScript : MonoBehaviour {
             Application.Quit();
         }
     }
+
+    public void Load4By4()
+    {
+        SceneManager.LoadScene("Tile Game 4 Letter");
+    }
+
+    public void Load5By5()
+    {
+        SceneManager.LoadScene("Tile Game 5 Letter");
+    }
 }

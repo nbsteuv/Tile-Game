@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinScript : MonoBehaviour {
 
-    public GameObject playAgainText;
+    public Text timeText;
+    public Text movesText;
 
     GameObject scoreKeeper;
     string time;
@@ -17,7 +19,8 @@ public class WinScript : MonoBehaviour {
         ScoreKeeperScript scoreKeeperScript = scoreKeeper.GetComponent<ScoreKeeperScript>();
         time = scoreKeeperScript.time;
         moves = scoreKeeperScript.moves;
-        playAgainText.GetComponent<TextMesh>().text = "It only took you " + time + " seconds\nand " + moves + " moves.\nPress 4 or 5 to play again.";
+        timeText.text = "Time: " + time;
+        movesText.text = "Moves: " + moves;
 	}
 	
 	// Update is called once per frame
@@ -36,5 +39,15 @@ public class WinScript : MonoBehaviour {
         {
             Application.Quit();
         }
+    }
+
+    public void Load4By4()
+    {
+        SceneManager.LoadScene("Tile Game 4 Letter");
+    }
+
+    public void Load5By5()
+    {
+        SceneManager.LoadScene("Tile Game 5 Letter");
     }
 }

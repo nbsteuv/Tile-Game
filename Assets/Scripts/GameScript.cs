@@ -5,6 +5,7 @@ using System.Linq;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour
 {
@@ -20,9 +21,7 @@ public class GameScript : MonoBehaviour
     public TextAsset fourWordList;
     public TextAsset fiveWordList;
     public GameObject tilePrefab;
-    public GameObject wordDisplayTextPrefab;
-    public GameObject timerDisplayPrefab;
-    public GameObject moveCounterPrefab;
+    public Text wordDisplay;
     public GameObject scoreKeeperPrefab;
     public float gridBuffer;
     public float screenPercentageToGrid;
@@ -32,8 +31,8 @@ public class GameScript : MonoBehaviour
     public int wordListDisplayBox;
     public int moveCounterDisplayBox;
 
-    GameObject moveCounter;
-    GameObject timer;
+    public GameObject moveCounter;
+    public GameObject timer;
     MoveCounterScript moveCounterScript;
     TimerScript timerScript;
     GameObject scoreKeeper;
@@ -154,45 +153,23 @@ public class GameScript : MonoBehaviour
 
     void instantiateMoveCounter()
     {
-        Vector3 moveCounterPosition = calculateDisplayPosition(moveCounterDisplayBox);
-        moveCounter = (GameObject)Instantiate(moveCounterPrefab, moveCounterPosition, Quaternion.identity);
-        moveCounter.gameObject.name = "MoveCounter";
         moveCounterScript = moveCounter.GetComponent<MoveCounterScript>();
     }
 
     void instantiateTimer()
     {
-        Vector3 timerPosition = calculateDisplayPosition(timerDisplayBox);
-        timer = (GameObject)Instantiate(timerDisplayPrefab, timerPosition, Quaternion.identity);
-        timer.gameObject.name = "Timer";
         timerScript = timer.GetComponent<TimerScript>();
         timerScript.startTimer();
     }
 
     void instantiateGameWordDisplay()
     {
-        Vector3 wordPosition = calculateDisplayPosition(wordListDisplayBox);
         string displayWords = "";
         foreach(string word in gameWords)
         {
             displayWords += word.ToUpper() + "\n";
         }
-        GameObject wordDisplay = (GameObject)Instantiate(wordDisplayTextPrefab, wordPosition, Quaternion.identity);
-        if ((int) gameSize == 5)
-        {
-            wordDisplay.transform.localScale = wordDisplay.transform.localScale * (0.8f);
-        }
-        wordDisplay.GetComponent<TextMesh>().text = displayWords;
-    }
-
-    Vector3 calculateDisplayPosition(int box)
-    {
-        float horizontalDisplayPosition = horizontalDisplayPositions[box];
-        float initialWordPositionX = horizontalDisplayPosition * displayPanelWidth;
-        float initialWordPositionY = displayDistanceAboveOrigin + (displayHeight / 2) - gridBuffer;
-        float initialWordPositionZ = -1;
-        Vector3 wordPosition = new Vector3(initialWordPositionX, initialWordPositionY, initialWordPositionZ);
-        return wordPosition;
+        wordDisplay.text = displayWords;
     }
     
     //Create win condition and effect---------------------------------------------------------------

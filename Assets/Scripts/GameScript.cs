@@ -188,7 +188,9 @@ public class GameScript : MonoBehaviour
 
     void keepScores()
     {
-        scoreKeeper.GetComponent<ScoreKeeperScript>().getScores();
+        decimal timerCount = timerScript.time;
+        int moveCount = moveCounterScript.moves;
+        scoreKeeper.GetComponent<ScoreKeeperScript>().registerScores(timerCount, moveCount);
     }
 
     //Move tile and reset empty position marker-------------------------------------------------------

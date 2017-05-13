@@ -17,9 +17,9 @@ public class ScoreKeeperScript : MonoBehaviour {
 		
 	}
 
-    public void getScores()
+    public void registerScores(decimal timerCount, int moveCount)
     {
-        time = GameObject.Find("Timer").GetComponent<TimerScript>().time.ToString();
-        moves = GameObject.Find("MoveCounter").GetComponent<MoveCounterScript>().moves.ToString();
+        time = timerCount.ToString();
+        moves = moveCount.ToString();
     }
 }

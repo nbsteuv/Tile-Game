@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoveCounterScript : MonoBehaviour {
 
     public int moves = 0;
-    TextMesh textMesh;
+    public Text movesText;
 
 	// Use this for initialization
 	void Start () {
-        textMesh = gameObject.GetComponent<TextMesh>();
-        textMesh.text = "Moves\n" + moves.ToString();
+        movesText.text = "Moves\n" + moves.ToString();
     }
 	
 	// Update is called once per frame
@@ -21,6 +21,6 @@ public class MoveCounterScript : MonoBehaviour {
     public void incrementMoves()
     {
         moves++;
-        textMesh.text = "Moves\n" + moves.ToString();
+        movesText.text = "Moves\n" + moves.ToString();
     }
 }

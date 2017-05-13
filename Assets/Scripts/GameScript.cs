@@ -31,8 +31,6 @@ public class GameScript : MonoBehaviour
     public int wordListDisplayBox;
     public int moveCounterDisplayBox;
 
-    public GameObject moveCounter;
-    public GameObject timer;
     MoveCounterScript moveCounterScript;
     TimerScript timerScript;
     GameObject scoreKeeper;
@@ -153,12 +151,12 @@ public class GameScript : MonoBehaviour
 
     void instantiateMoveCounter()
     {
-        moveCounterScript = moveCounter.GetComponent<MoveCounterScript>();
+        moveCounterScript = GetComponent<MoveCounterScript>();
     }
 
     void instantiateTimer()
     {
-        timerScript = timer.GetComponent<TimerScript>();
+        timerScript = GetComponent<TimerScript>();
         timerScript.startTimer();
     }
 
